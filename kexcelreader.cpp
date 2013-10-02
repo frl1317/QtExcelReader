@@ -26,23 +26,9 @@ KExcelReader::~KExcelReader()
     }
 }
 
-class KAxObject : public QAxObject
-{
-public:
-    KAxObject(const QString &c, QObject *parent = 0) : QAxObject(c, parent)
-    {
-
-    }
-
-    ~KAxObject()
-    {
-        qDebug() << "~KAxObject()";
-    }
-};
-
 bool KExcelReader::isExcelApplicationAvailable()
 {
-    KAxObject* excel = new KAxObject("Excel.Application", 0);
+    QAxObject* excel = new QAxObject("Excel.Application", 0);
     excel->deleteLater();
 
     return !excel->isNull();
